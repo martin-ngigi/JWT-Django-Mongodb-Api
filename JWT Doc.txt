@@ -9,18 +9,45 @@ pip install requirements.txt
 1. POST -> (singup) register account:
  endpoint -> http://127.0.0.1:8000/auth/signup/
  chose body then raw then in the text, chose json and paste the following:
-    {
-        "email":"admin@gmail.com",
-        "username":"admin",
-        "password":"12345678"
+{
+    "email": "martinwainaina001@gmail.com",
+    "username": "martinwainaina001",
+    "phone": "0797292290",
+    "first_name": "Martin",
+    "last_name": "Wainaina",
+    "date_of_birth": "1999-11-23",
+    "password": "12345678",
+    "backup_phone":"0712345678" 
+}
+
+expepected response:
+{
+    "message": "User Created Successfully",
+    "data": {
+        "id": 1,
+        "email": "martinwainaina001@gmail.com",
+        "username": "martinwainaina001",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "Martin",
+        "last_name": "Wainaina",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2022-11-05T12:33:04.452989Z",
+        "date_of_birth": "1999-11-23",
+        "phone": "0797292290",
+        "backup_phone": "0712345678",
+        "groups": [],
+        "user_permissions": []
     }
+}
 
 2. POST ->(create auth token):
     endpoint -> http://127.0.0.1:8000/auth/jwt/create/
     chose body then raw then in the text, chose json and paste the following:
         {
-        "email":"admin@gmail.com",
-        "username":"admin",
+        "email":"martinwainaina001@gmail.com",
+        "username":"martinwainaina001",
         "password":"12345678"
     }
 
@@ -33,7 +60,7 @@ pip install requirements.txt
 
 3. POST -> Create a refresh Token:
 EndPoint: http://127.0.0.1:8000/auth/jwt/refresh/
-The Refresh token is the one obtained above.... The reason is; after sometime the access token expires so must create a new access token using the refresh token
+Copy The Refresh token is the one obtained above.... The reason is; after sometime the access token expires so must create a new access token using the refresh token
 chose body then raw then in the text, chose json and paste the following:
      {
         "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY2Njc0OTIyOSwiaWF0IjoxNjY2NjYyODI5LCJqdGkiOiJiMzAyM2E2MGI3NWE0OTllYTVhNDY1MzQyMzliNjZhZCIsInVzZXJfaWQiOjJ9.UihxKMp47p8kMeyVetKd3pBGu4Ui3Ftr5pQG5gGXPq4"
