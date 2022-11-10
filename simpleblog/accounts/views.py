@@ -65,6 +65,7 @@ class LoginView(APIView):
         return Response(data=content, status=status.HTTP_200_OK)
 
 
+#SECOND TOKEN OBTAINER.... USE THIS TO OBTAIN BOTH TOKENS AND USERS DATA
 class TokenObtainPairView(TokenViewBase):
     """
     Takes a set of user credentials and returns access and refresh JSON web
