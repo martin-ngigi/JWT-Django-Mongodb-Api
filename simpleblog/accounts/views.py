@@ -4,9 +4,19 @@ from rest_framework import generics, status
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
+from . import serializers
 
 from .serializers import SignUpSerializer
 from .tokens import create_jwt_pair_for_user
+
+from rest_framework_simplejwt.serializers import (
+    TokenObtainSerializer,
+    RefreshToken,
+    api_settings,
+    update_last_login,
+)
+from rest_framework_simplejwt.views import TokenViewBase
 
 # Create your views here.
 
@@ -53,3 +63,11 @@ class LoginView(APIView):
         content = {"user": str(request.user), "auth": str(request.auth)}
 
         return Response(data=content, status=status.HTTP_200_OK)
+
+
+class TokenObtainPairView(TokenViewBase):
+    """
+    Takes a set of user credentials and returns access and refresh JSON web
+    token pair to prove the authentication of those credentials.
+    """
+    serializer_class = serializers.TokenObtainPairSerializer
